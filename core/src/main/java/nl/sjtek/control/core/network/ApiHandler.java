@@ -42,9 +42,7 @@ public class ApiHandler implements HttpHandler {
         modules.put("tv", new TV("tv").init());
         modules.put("sonarr", new Sonarr("sonarr").init());
         modules.put("quotes", new Quotes("quotes").init());
-        modules.put("nfc", new NFC("nfc").init());
         modules.put("nightmode", new NightMode("nightmode").init());
-        modules.put("time", new Time("time").init());
         modules.put("coffee", new Coffee("coffee").init());
         modules.put("screen", new Screen("screen").init());
         modules.put("art", new Art("art").init());
@@ -202,44 +200,21 @@ public class ApiHandler implements HttpHandler {
         }
     }
 
-    public synchronized void masterToggle(Arguments arguments) {
+    private synchronized void masterToggle(Arguments arguments) {
         Bus.post(new StateEvent(!isOn(arguments.getUserName()), arguments.getUser()));
     }
 
+    @Deprecated
     public Music getMusic() {
         return (Music) modules.get("music");
     }
 
-    public Lights getLights() {
-        return (Lights) modules.get("lights");
-    }
-
+    @Deprecated
     public Temperature getTemperature() {
         return (Temperature) modules.get("temperature");
     }
 
-    public TV getTv() {
-        return (TV) modules.get("tv");
-    }
-
-    public Sonarr getSonarr() {
-        return (Sonarr) modules.get("sonarr");
-    }
-
-    public Quotes getQuotes() {
-        return (Quotes) modules.get("quotes");
-    }
-
-    public NFC getNfc() {
-        return (NFC) modules.get("nfc");
-    }
-
-    public NightMode getNightMode() {
-        return (NightMode) modules.get("nightmode");
-    }
-
-
-    public boolean isOn(String user) {
+    private boolean isOn(String user) {
         for (Map.Entry<String, BaseModule> entry : modules.entrySet()) {
             if (entry.getValue().isEnabled(user)) return true;
         }
@@ -255,20 +230,20 @@ public class ApiHandler implements HttpHandler {
         TEMP_LOG,
     }
 
-    private class ExecuteResult {
+    private static class ExecuteResult {
         private final int responseCode;
         private final String responseText;
 
-        public ExecuteResult(int responseCode, String responseText) {
+        ExecuteResult(int responseCode, String responseText) {
             this.responseCode = responseCode;
             this.responseText = responseText;
         }
 
-        public int getResponseCode() {
+        int getResponseCode() {
             return responseCode;
         }
 
-        public String getResponseText() {
+        String getResponseText() {
             return responseText;
         }
     }

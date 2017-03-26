@@ -21,7 +21,6 @@ public class Temperature extends BaseModule {
 
     private static final int UPDATE_DELAY = 900000;
     private static final String WEATHER_URL_OUTSIDE = String.format("https://api.darksky.net/forecast/%s/51.5121298,5.4924242", SettingsManager.getInstance().getWeather().getApiKey());
-    private static final String WEATHER_URL_INSIDE = "http://10.10.0.2/cgi-bin/temp";
     private static final String LOG_PATH = "/var/sjtekcontrol/log.csv";
     private static final int ID_INSIDE = 1;
     private static final String DEBUG = Temperature.class.getSimpleName();
@@ -150,7 +149,6 @@ public class Temperature extends BaseModule {
 
         @Override
         public void run() {
-            // parseInside(download(WEATHER_URL_INSIDE));
             parseOutside(download(WEATHER_URL_OUTSIDE));
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(LOG_PATH, true))) {

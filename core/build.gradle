@@ -12,6 +12,7 @@ dependencies {
     compile 'com.rabbitmq:amqp-client:4.0.0'
     compile 'org.json:json:20160810'
     compile 'com.github.Whhoesj:java-utils:0.2'
+    compile 'com.sparkjava:spark-core:2.5.5'
 }
 
 mainClassName = 'nl.sjtek.control.core.SjtekControl'

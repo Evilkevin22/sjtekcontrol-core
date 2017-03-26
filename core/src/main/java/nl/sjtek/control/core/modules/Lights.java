@@ -9,28 +9,12 @@ import nl.sjtek.control.data.responses.LightsResponse;
 import nl.sjtek.control.data.responses.Response;
 import nl.sjtek.control.data.settings.User;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-@SuppressWarnings({"UnusedParameters", "unused"})
+@SuppressWarnings({"UnusedParameters", "unused", "WeakerAccess"})
 public class Lights extends BaseModule {
-
-    private static final String SWITCH1ON = "switch-1-on";
-    private static final String SWITCH1OFF = "switch-1-off";
-    private static final String SWITCH2ON = "switch-2-on";
-    private static final String SWITCH2OFF = "switch-2-off";
-    private static final String SWITCH3ON = "switch-3-on";
-    private static final String SWITCH3OFF = "switch-3-off";
-    private static final String SWITCH4ON = "switch-4-on";
-    private static final String SWITCH4OFF = "switch-4-off";
-
-    private static final String ROOT_URL_NORMAL = "http://10.10.0.2/cgi-bin/";
-    private static final String ROOT_URL_RGB = "http://10.10.0.4:8000/";
 
     private static final long UPDATE_DELAY = 100;
     private final ScheduledThreadPoolExecutor executor;
@@ -233,50 +217,6 @@ public class Lights extends BaseModule {
 
     public void toggle7off(Arguments arguments) {
         Bus.post(arguments.getLightEvent(7, false));
-    }
-
-    @Deprecated
-    private synchronized int action(String action, String code) {
-        return send(ROOT_URL_NORMAL, action, code);
-    }
-
-    @Deprecated
-    private synchronized int actionLedStrip(Arguments arguments, boolean state) {
-        if (!arguments.getRgb().isEmpty()) {
-            return send(ROOT_URL_RGB, "led", "rgb=" + arguments.getRgb());
-        } else if (!arguments.getCode().isEmpty()) {
-            return send(ROOT_URL_RGB, "led", "code=" + arguments.getCode());
-        } else if (state) {
-            return send(ROOT_URL_RGB, "led", "rgb=255,50,0");
-        } else {
-            return send(ROOT_URL_RGB, "led", "rgb=0,0,0");
-        }
-    }
-
-    @Deprecated
-    private int send(String urlString, String action, String argument) {
-        try {
-            URL url = new URL(urlString + action + "?" + argument);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.connect();
-            int responseCode = connection.getResponseCode();
-            if (responseCode == 200) {
-                InputStream inputStream = connection.getInputStream();
-                StringBuilder stringBuffer = new StringBuilder();
-                int character;
-                while ((character = inputStream.read()) != -1) {
-                    stringBuffer.append(character);
-                }
-
-                String stringResponse = stringBuffer.toString();
-                return 200;
-            } else {
-                return responseCode;
-            }
-        } catch (IOException e) {
-            return 500;
-        }
     }
 
     @Override
