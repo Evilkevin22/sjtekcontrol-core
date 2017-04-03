@@ -3,7 +3,6 @@ package nl.sjtek.control.core.utils.lastfm;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.habets.javautils.Log;
-import nl.sjtek.control.core.settings.SettingsManager;
 import nl.sjtek.control.core.utils.FileUtils;
 
 import java.io.IOException;

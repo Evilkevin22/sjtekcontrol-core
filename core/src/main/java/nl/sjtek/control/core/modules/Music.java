@@ -44,16 +44,6 @@ public class Music extends BaseModule implements ConnectionChangeListener {
     private boolean timerRunning;
 
     /**
-     * Connect to the default MPD server.
-     *
-     * @throws UnknownHostException
-     * @throws MPDConnectionException
-     */
-    public Music(String key) {
-        this(key, SettingsManager.getInstance().getMusic().getMpdHost(), SettingsManager.getInstance().getMusic().getMpdPort());
-    }
-
-    /**
      * Connect to an MPD server with a hostname and port;
      *
      * @param host Hostname for the MPD server
@@ -240,11 +230,11 @@ public class Music extends BaseModule implements ConnectionChangeListener {
         mpdFile.setPath(path);
         mpd.getPlaylist().addFileOrDirectory(mpdFile);
 
-        if (injectTaylorSwift) {
-            MPDFile tt = new MPDFile();
-            tt.setPath(SettingsManager.getInstance().getMusic().getTaylorSwiftPath());
-            mpd.getPlaylist().addFileOrDirectory(tt);
-        }
+        // if (injectTaylorSwift) {
+        //     MPDFile tt = new MPDFile();
+        //     tt.setPath(SettingsManager.getInstance().getMusic().getTaylorSwiftPath());
+        //     mpd.getPlaylist().addFileOrDirectory(tt);
+        // }
 
         if (!arguments.isNoShuffle()) shuffle(dummyArguments);
         play(dummyArguments);
@@ -280,7 +270,7 @@ public class Music extends BaseModule implements ConnectionChangeListener {
      * @param arguments Arguments
      */
     public void volumeneutral(Arguments arguments) {
-        mpd.getPlayer().setVolume(SettingsManager.getInstance().getMusic().getVolumeNeutral());
+        mpd.getPlayer().setVolume(SettingsManager.getInstance().getMusic().getDefaultVolume());
         dataChanged();
     }
 

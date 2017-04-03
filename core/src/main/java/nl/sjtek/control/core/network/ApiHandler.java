@@ -8,7 +8,6 @@ import nl.sjtek.control.core.ampq.AMQP;
 import nl.sjtek.control.core.events.Bus;
 import nl.sjtek.control.core.events.StateEvent;
 import nl.sjtek.control.core.modules.*;
-import nl.sjtek.control.core.settings.SettingsManager;
 import nl.sjtek.control.core.utils.Speech;
 import nl.sjtek.control.data.actions.ActionInterface;
 

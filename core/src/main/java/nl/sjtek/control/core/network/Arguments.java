@@ -1,6 +1,5 @@
 package nl.sjtek.control.core.network;
 
-import nl.sjtek.control.core.settings.SettingsManager;
 import nl.sjtek.control.data.ampq.events.LightEvent;
 import nl.sjtek.control.data.settings.User;
 import org.apache.commons.codec.Charsets;

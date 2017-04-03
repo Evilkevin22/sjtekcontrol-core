@@ -2,7 +2,6 @@ package nl.sjtek.control.core.modules;
 
 import com.google.common.eventbus.Subscribe;
 import io.habets.javautils.Log;
-import nl.sjtek.control.core.settings.SettingsManager;
 import nl.sjtek.control.data.ampq.events.TemperatureEvent;
 import nl.sjtek.control.data.responses.Response;
 import nl.sjtek.control.data.responses.TemperatureResponse;

@@ -3,7 +3,6 @@ package nl.sjtek.control.core.network;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import nl.sjtek.control.core.modules.BaseModule;
-import nl.sjtek.control.core.settings.SettingsManager;
 import nl.sjtek.control.data.responses.Response;
 import nl.sjtek.control.data.responses.ResponseAdapter;
 import nl.sjtek.control.data.settings.DataCollection;

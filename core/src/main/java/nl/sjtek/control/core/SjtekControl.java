@@ -14,7 +14,7 @@ public class SjtekControl {
 
     public SjtekControl() {
         long start = System.currentTimeMillis();
-        SettingsManager.getInstance().reload();
+        SettingsManager.reload();
         this.apiHandler = ApiHandler.getInstance();
         long end = System.currentTimeMillis();
         Log.i("SjtekControl", "Loaded in " + (end - start) + "ms");

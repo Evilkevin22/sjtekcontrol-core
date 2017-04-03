@@ -1,6 +1,5 @@
 package nl.sjtek.control.core.modules;
 
-import nl.sjtek.control.core.settings.SettingsManager;
 import nl.sjtek.control.data.responses.QuotesResponse;
 import nl.sjtek.control.data.responses.Response;
 import org.json.JSONArray;

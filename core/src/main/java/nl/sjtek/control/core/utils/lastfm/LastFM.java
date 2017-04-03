@@ -1,7 +1,6 @@
 package nl.sjtek.control.core.utils.lastfm;
 
 import io.habets.javautils.Log;
-import nl.sjtek.control.core.settings.SettingsManager;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
